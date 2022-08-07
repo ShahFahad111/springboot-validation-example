@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javavalidation.dto.UserRequest;
 import com.javavalidation.entity.User;
+import com.javavalidation.exception.UserNotFoundException;
 import com.javavalidation.repository.UserRepository;
 
 @Service
@@ -24,8 +25,13 @@ public class UserService {
 		 return userRepository.findAll();
 	}
 	
-	public User getUser(int id) {
-		return userRepository.findByUserId(id);
+	public User getUser(int id) throws UserNotFoundException{
+		User user = userRepository.findByUserId(id);
+		if(user != null) {
+			return user;
+		}else {
+			throw new UserNotFoundException("User Not FOund with Id " + id);
+		}
 	}
 }
  

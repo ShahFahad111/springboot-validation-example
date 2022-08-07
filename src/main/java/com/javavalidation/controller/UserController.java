@@ -2,6 +2,8 @@ package com.javavalidation.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javavalidation.dto.UserRequest;
 import com.javavalidation.entity.User;
+import com.javavalidation.exception.UserNotFoundException;
 import com.javavalidation.service.UserService;
 
 @RestController
@@ -24,7 +27,7 @@ public class UserController {
 	private UserService service;
 	
 	@PostMapping("/signup")
-	public ResponseEntity<User> saveUser(@RequestBody UserRequest userRequest){
+	public ResponseEntity<User> saveUser(@RequestBody @Valid UserRequest userRequest){
 		return new ResponseEntity<>(service.saveUser(userRequest),HttpStatus.CREATED);
 	}
 	
@@ -34,7 +37,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUser(@PathVariable int id){
+	public ResponseEntity<User> getUser(@PathVariable int id) throws UserNotFoundException{
 		return ResponseEntity.ok(service.getUser(id));
 	}
 }
