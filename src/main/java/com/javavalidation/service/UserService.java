@@ -17,7 +17,7 @@ public class UserService {
 	private UserRepository userRepository; 
 	
 	public User saveUser(UserRequest userRequest) {
-		User user = User.build(0, userRequest.getName(), userRequest.getEmail(), userRequest.getMobile(), userRequest.getAge(), userRequest.getNationality()); 
+		User user = User.build(0, userRequest.getName(), userRequest.getEmail(), userRequest.getMobile(), userRequest.getAge(), userRequest.getNationality(),userRequest.getUserType()); 
 		return userRepository.save(user);
 	}
 	
@@ -30,7 +30,7 @@ public class UserService {
 		if(user != null) {
 			return user;
 		}else {
-			throw new UserNotFoundException("User Not FOund with Id " + id);
+			throw new UserNotFoundException("User Not Found with Id " + id);
 		}
 	}
 }

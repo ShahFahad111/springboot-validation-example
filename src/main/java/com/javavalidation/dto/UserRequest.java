@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.javavalidation.annotation.ValidateUserType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,4 +34,7 @@ public class UserRequest {
 	
 	@NotBlank
 	private String nationality;
+	
+	@ValidateUserType(message = "Please provide correct user type")
+	private String userType; // admin, vendor, user
 }

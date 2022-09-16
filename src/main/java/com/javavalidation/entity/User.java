@@ -24,4 +24,5 @@ public class User {
 	private String mobile;
 	private int age;
 	private String nationality;
+	private String userType;	
 }
