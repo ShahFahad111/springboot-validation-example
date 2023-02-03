@@ -10,4 +10,9 @@ spring:
     show-sql: true
     properties:      hibernate:
         dialect: org.hibernate.dialect.MySQL55Dialect
-server:  port: 9292
+server:  port: 8181
+  
+report:
+  path: E:\\Java\\report
+  backup: E:\\Java\\backup
+  backup-local-file: true
